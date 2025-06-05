@@ -1,0 +1,42 @@
+@page "/citydetails/{name}"
+@using System.Globalization
+@model CityBreaks.Web.Pages.CityDetails
+
+@{
+    ViewData["Title"] = $"Detalhes de {Model.City.Name}";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h1>@Model.City.Name</h1>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                País: @Model.City.Country.CountryName
+                <small class="text-muted">(@Model.City.Country.CountryCode)</small>
+            </h5>
+            <hr />
+
+            @if (Model.City.Properties.Any())
+            {
+                <h4>Propriedades na Cidade: @Model.City.Name:</h4>
+                <div class="list-group mt-3">
+                    @foreach (var property in Model.City.Properties)
+                    {
+                        <div class="list-group-item list-group-item-action flex-column align-items-start mb-2">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">@property.Name</h5>
+                                <small class=""><strong>@property.PricePerNight.ToString("C", new CultureInfo("pt-BR") ) / noite</strong></small>
+                            </div>
+                            <small class="text-muted">ID da Propriedade: @property.Id</small>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        <div class="card-footer text-muted">
+            <a asp-page="/Index" class="btn btn-outline-secondary">Voltar para a lista de cidades</a>
+        </div>
+    </div>
+</div>

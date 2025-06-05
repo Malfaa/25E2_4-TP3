@@ -12,7 +12,7 @@
     {
         <div class="card mb-3">
             <div class="card-header">
-                <h2>@city.Name <small class="text-muted">(@(city.Country.CountryName)</small></h2>
+                <h2><a asp-page="/CityDetails" asp-route-name="@city.Name">@city.Name</a> <small class="text-muted">(@city.Country.CountryName)</small></h2>
             </div>
             <div class="card-body">
                 @if (city.Properties.Any())

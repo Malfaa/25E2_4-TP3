@@ -20,5 +20,18 @@ public class CityService : ICityService
             .ToListAsync();
         return cities;
     }
-	
+
+    public async Task<City> GetByNameAsync(string name)
+    {
+        if(string.IsNullOrWhiteSpace(name))
+        {
+            return null;
+        }
+        var cities = await _context.Cities
+            .Include(city => city.Country)
+            .Include(city=> city.Properties)
+            .FirstOrDefaultAsync(c => EF.Functions.Collate(c.Name, "NOCASE") == name);
+
+        return cities ?? throw new InvalidOperationException();
+    }
 }
