@@ -14,5 +14,8 @@ public class CountryConfiguration : IEntityTypeConfiguration<Country>
         builder.Property(c => c.CountryCode).IsRequired().HasMaxLength(3).HasColumnName("country_code");
         builder.HasMany(c => c.Cities).WithOne(city => city.Country).HasForeignKey(city => city.CountryId).OnDelete(DeleteBehavior.Cascade); 
         builder.HasIndex(c => c.CountryCode).IsUnique(); 
+        builder.HasData(
+            new Country { Id = 1, CountryName = "Brasil", CountryCode = "BRA" }
+        );
     }
 }

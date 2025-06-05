@@ -12,6 +12,10 @@ public class CityConfiguration : IEntityTypeConfiguration<City>
         builder.Property(c => c.Id).HasColumnName("city_id");
         builder.Property(c => c.Name).IsRequired().HasMaxLength(150).HasColumnName("city_name");
         builder.Property(c => c.CountryId).HasColumnName("country_id_fk");
-        builder.HasMany(c => c.Properties).WithOne(p => p.City).HasForeignKey(p => p.CityId).OnDelete(DeleteBehavior.Cascade);	
+        builder.HasMany(c => c.Properties).WithOne(p => p.City).HasForeignKey(p => p.CityId).OnDelete(DeleteBehavior.Cascade);
+        builder.HasData(
+                new City{Id = 1, Name= "Rio De Janeiro",CountryId = 1},
+                new City{Id = 2, Name= "São Paulo",CountryId = 1}
+        );
     }
 }

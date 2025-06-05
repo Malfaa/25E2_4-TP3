@@ -13,6 +13,9 @@ public class PropertyConfiguration : IEntityTypeConfiguration<Property>
         builder.Property(p => p.Name).IsRequired().HasMaxLength(255).HasColumnName("property_name");
         builder.Property(p => p.PricePerNight).IsRequired().HasColumnType("decimal(18,2)").HasColumnName("price_per_night");
         builder.Property(p => p.CityId).HasColumnName("city_id_fk");
-		
+        builder.HasData(
+            new Property { Id = 1, Name = "Apartamento Copacabana Vista Mar", PricePerNight = 750.00m, CityId = 1 },
+            new Property { Id = 2, Name = "Casa Charmosa em Santa Teresa", PricePerNight = 500.00m, CityId = 1 }
+        );
     }
 }
