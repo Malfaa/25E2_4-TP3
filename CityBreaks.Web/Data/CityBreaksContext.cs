@@ -1,3 +1,4 @@
+using CityBreaks.Web.Data.Configurations;
 using CityBreaks.Web.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,13 +10,23 @@ public class CityBreaksContext : DbContext
     {
         
     }
-
-    public CityBreaksContext(DbContextOptions<CityBreaksContext> options) : base(options)
+    
+    DbSet<Country> Countries {get; set;}
+    DbSet<Property> Properties {get; set;}
+    DbSet<City> Cities {get; set;}
+    
+    public CityBreaksContext(DbContextOptions<CityBreaksContext> options)
+        : base(options)
     {
     }
-
-    DbSet<Country> Countries { get; set; }
-    DbSet<City> Cities { get; set; }
-    DbSet<Property> Properties { get; set; }
-
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+	    
+        modelBuilder.ApplyConfiguration(new CountryConfiguration());
+        modelBuilder.ApplyConfiguration(new CityConfiguration());
+        modelBuilder.ApplyConfiguration(new PropertyConfiguration());
+    }
+    
 }

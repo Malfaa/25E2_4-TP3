@@ -8,6 +8,6 @@ public class Country
     public string CountryCode { get; set; }
     public string CountryName { get; set; }
     
-    List<City> Cities { get; set; }
+    public List<City> Cities { get; set; }
 
 }	
