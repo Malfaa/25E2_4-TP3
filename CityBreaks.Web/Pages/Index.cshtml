@@ -1,10 +1,37 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Cities Properties";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1>@ViewData["Title"]</h1>
+
+
+<div class="container">
+    @foreach (var city in Model.Cities)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                <h2>@city.Name <small class="text-muted">(@(city.Country.CountryName)</small></h2>
+            </div>
+            <div class="card-body">
+                @if (city.Properties.Any())
+                {
+                    <h4>Propriedades em @city.Name:</h4>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var property in city.Properties)
+                        {
+                            <li class="list-group-item">
+                                <strong>@property.Name</strong> - Preço por noite: @property.PricePerNight.ToString("C", new System.Globalization.CultureInfo("pt-BR"))
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p><em>Nenhuma propriedade listada para esta cidade.</em></p>
+                }
+            </div>
+        </div>
+    }
 </div>

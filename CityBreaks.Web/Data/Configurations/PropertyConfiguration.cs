@@ -15,7 +15,9 @@ public class PropertyConfiguration : IEntityTypeConfiguration<Property>
         builder.Property(p => p.CityId).HasColumnName("city_id_fk");
         builder.HasData(
             new Property { Id = 1, Name = "Apartamento Copacabana Vista Mar", PricePerNight = 750.00m, CityId = 1 },
-            new Property { Id = 2, Name = "Casa Charmosa em Santa Teresa", PricePerNight = 500.00m, CityId = 1 }
+            new Property { Id = 2, Name = "Casa Charmosa em Santa Teresa", PricePerNight = 500.00m, CityId = 1 },
+            new Property { Id = 3, Name = "Loft Moderno na Vila Madalena", PricePerNight = 600.00m, CityId = 2 }
+
         );
     }
 }

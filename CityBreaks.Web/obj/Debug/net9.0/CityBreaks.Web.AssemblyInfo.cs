@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CityBreaks.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53e4bd4a1bb330642dd1b52a10d739f4cad7b6bd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+affd9a89a75de3a87185bbdc6c9e2f27c07e5464")]
 [assembly: System.Reflection.AssemblyProductAttribute("CityBreaks.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CityBreaks.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

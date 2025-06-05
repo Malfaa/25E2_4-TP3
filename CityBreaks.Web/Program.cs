@@ -1,4 +1,5 @@
 using CityBreaks.Web.Data;
+using CityBreaks.Web.Data.Service;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,9 @@ builder.Services.AddDbContext<CityBreaksContext>(options =>
     options.UseSqlite(
         builder.Configuration.GetConnectionString("CityBreaksConnection"));
 });
+
+builder.Services.AddScoped<ICityService, CityService>(); 
+
 
 var app = builder.Build();
 
