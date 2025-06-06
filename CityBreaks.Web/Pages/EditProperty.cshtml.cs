@@ -31,7 +31,7 @@ namespace CityBreaks.Web.Pages
             }
 
             Property = (await _context.Properties
-                .Include(p => p.City) // Inclui a cidade na consulta
+                .Include(p => p.City)
                 .FirstOrDefaultAsync(m => m.Id == id))!;
 
             if (Property == null)
@@ -54,7 +54,7 @@ namespace CityBreaks.Web.Pages
                 return NotFound();
             }
 
-            if (await TryUpdateModelAsync<Property>(
+            if (await TryUpdateModelAsync(
                     propertyToUpdate,
                     "Property",
                     p => p.Name, p => p.PricePerNight, p => p.CityId))
