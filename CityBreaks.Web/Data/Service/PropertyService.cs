@@ -1,3 +1,6 @@
+using CityBreaks.Web.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace CityBreaks.Web.Data.Service;
 
 public class PropertyService : IPropertyService
@@ -28,5 +31,34 @@ public class PropertyService : IPropertyService
         }
 
         return false;
+    }
+    public async Task<List<Property>> GetFilteredAsync(decimal? minPrice, decimal? maxPrice, string cityName, string propertyName)
+    {
+        
+        IQueryable<Property> query = _context.Properties
+            .Include(p => p.City)    
+            .ThenInclude(c => c.Country);
+
+        if (minPrice.HasValue)
+        {
+            query = query.Where(p => p.PricePerNight >= minPrice.Value);
+        }
+
+        if (maxPrice.HasValue)
+        {
+            query = query.Where(p => p.PricePerNight <= maxPrice.Value);
+        }
+
+        if (!string.IsNullOrWhiteSpace(cityName))
+        {
+            query = query.Where(p => p.City.Name.Contains(cityName));
+        }
+
+        if (!string.IsNullOrWhiteSpace(propertyName))
+        {
+            query = query.Where(p => p.Name.Contains(propertyName));
+        }
+
+        return await query.OrderBy(p => p.Name).ToListAsync();
     }
 }

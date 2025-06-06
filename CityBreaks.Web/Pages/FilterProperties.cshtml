@@ -1,0 +1,59 @@
+@page
+@model CityBreaks.Web.Pages.FilterProperties
+@{
+    ViewData["Title"] = "Busca de Propriedades";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card mb-4">
+    <div class="card-header">Filtros</div>
+    <div class="card-body">
+        <form method="get">
+            <div class="row">
+                <div class="col-md-3"><input asp-for="PropertyName" class="form-control" placeholder="Nome da propriedade..." /></div>
+                <div class="col-md-3"><input asp-for="CityName" class="form-control" placeholder="Nome da cidade..." /></div>
+                <div class="col-md-2"><input asp-for="MinPrice" class="form-control" placeholder="Preço mín." /></div>
+                <div class="col-md-2"><input asp-for="MaxPrice" class="form-control" placeholder="Preço máx." /></div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">Buscar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<h4>Resultados da Busca (@Model.FilteredProperties?.Count)</h4>
+
+@if (Model.FilteredProperties != null && Model.FilteredProperties.Any())
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Propriedade</th>
+                <th>Cidade</th>
+                <th>País</th>
+                <th>Preço/Noite</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var property in Model.FilteredProperties)
+            {
+                <tr>
+                    <td>@property.Name</td>
+                    <td>@property.City.Name</td>
+                    <td>@property.City.Country.CountryName</td>
+                    <td>@property.PricePerNight.ToString("C")</td>
+                    <td>
+                        <a asp-page="/EditProperty" asp-route-id="@property.Id" class="btn btn-sm btn-secondary">Editar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nenhuma propriedade encontrada com os critérios especificados.</p>
+}
