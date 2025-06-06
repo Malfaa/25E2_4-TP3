@@ -23,7 +23,7 @@ public class CreateProperty : PageModel
 
         public async Task OnGetAsync()
         {
-            await PopulateCityOptionsAsync();
+            await PopulateDropdown();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -31,7 +31,7 @@ public class CreateProperty : PageModel
 
             if (!ModelState.IsValid)
             {
-                await PopulateCityOptionsAsync();
+                await PopulateDropdown();
                 return Page();
             }
 
@@ -45,12 +45,12 @@ public class CreateProperty : PageModel
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                await PopulateCityOptionsAsync();
+                await PopulateDropdown();
                 return Page();
             }
         }
 
-        private async Task PopulateCityOptionsAsync()
+        private async Task PopulateDropdown()
         {
             var cities = await _context.Cities
                                      .OrderBy(c => c.Name)

@@ -26,7 +26,9 @@
                     {
                         <div class="list-group-item list-group-item-action flex-column align-items-start mb-2">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">@property.Name</h5>
+                                <h5 class="mb-1">
+                                    <a asp-page="/EditProperty" asp-route-id="@property.Id">@property.Name</a>
+                                </h5>
                                 <small class=""><strong>@property.PricePerNight.ToString("C", new CultureInfo("pt-BR") ) / noite</strong></small>
                             </div>
                             <small class="text-muted">ID da Propriedade: @property.Id</small>
