@@ -33,6 +33,17 @@
                             </div>
                             <small class="text-muted">ID da Propriedade: @property.Id</small>
                         </div>
+                        
+                        <form method="post" style="display: inline;">
+                            <button type="submit" 
+                                    asp-page-handler="Delete" 
+                                    asp-route-propertyId="@property.Id" 
+                                    asp-route-cityName="@Model.City.Name"
+                                    class="btn btn-sm btn-outline-danger" 
+                                    onclick="return confirm('Tem certeza que deseja excluir esta propriedade?');">
+                                Excluir
+                            </button>
+                        </form>
                     }
                 </div>
             }
